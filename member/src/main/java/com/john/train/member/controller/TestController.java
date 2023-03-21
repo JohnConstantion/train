@@ -1,4 +1,4 @@
-package com.john.train;
+package com.john.train.member.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

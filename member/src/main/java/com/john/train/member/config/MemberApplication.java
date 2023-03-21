@@ -1,16 +1,18 @@
-package com.john.train;
+package com.john.train.member.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author johnconstantine
  */
 @SpringBootApplication
-public class TrainApplication {
+@ComponentScan("com.john")
+public class MemberApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TrainApplication.class, args);
+        SpringApplication.run(MemberApplication.class, args);
     }
 
 }
