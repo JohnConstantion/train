@@ -3,6 +3,7 @@ package com.john.train.member.controller;
 import com.john.train.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,4 +21,8 @@ public class MemberController {
         return service.count();
     }
 
+    @PostMapping("/register")
+    public Long register(String mobile) {
+        return service.register(mobile);
+    }
 }
