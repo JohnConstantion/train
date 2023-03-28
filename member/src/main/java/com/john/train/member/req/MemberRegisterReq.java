@@ -1,9 +1,12 @@
 package com.john.train.member.req;
 
+import jakarta.validation.constraints.NotBlank;
+
 /**
  * @author johnconstantine
  */
 public class MemberRegisterReq {
+    @NotBlank(message = "【手机号】不可以为空")
     private String mobile;
 
     public String getMobile() {
