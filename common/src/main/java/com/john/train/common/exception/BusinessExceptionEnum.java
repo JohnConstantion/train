@@ -5,8 +5,18 @@ package com.john.train.common.exception;
  */
 
 public enum BusinessExceptionEnum {
-    MEMBER_MOBILE_EXIST("手机号已注册");
-
+    /**
+     * 手机号已注册
+     */
+    MEMBER_MOBILE_EXIST("手机号已注册"),
+    /**
+     * 请先获取短信验证码
+     */
+    MEMBER_MOBILE_NOT_EXIST("请先获取短信验证码"),
+    /**
+     * 短信验证码错误
+     */
+    MEMBER_MOBILE_CODE_ERROR("短信验证码错误");
     private String desc;
 
     BusinessExceptionEnum(String desc) {
@@ -23,8 +33,6 @@ public enum BusinessExceptionEnum {
 
     @Override
     public String toString() {
-        return "BusinessExceptionEnum{" +
-                "desc='" + desc + '\'' +
-                "} " + super.toString();
+        return "BusinessExceptionEnum{" + "desc='" + desc + '\'' + "} " + super.toString();
     }
 }

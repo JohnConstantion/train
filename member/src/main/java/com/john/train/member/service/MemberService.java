@@ -1,15 +1,17 @@
 package com.john.train.member.service;
 
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.john.train.common.exception.BusinessException;
 import com.john.train.common.exception.BusinessExceptionEnum;
 import com.john.train.common.util.SnowUtil;
 import com.john.train.member.domain.Member;
 import com.john.train.member.domain.MemberExample;
 import com.john.train.member.mapper.MemberMapper;
+import com.john.train.member.req.MemberLoginReq;
 import com.john.train.member.req.MemberRegisterReq;
 import com.john.train.member.req.MemberSendCodeReq;
+import com.john.train.member.resp.MemberLoginResp;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,10 +35,8 @@ public class MemberService {
 
     public long register(MemberRegisterReq req) {
         String mobile = req.getMobile();
-        MemberExample mobileExample = new MemberExample();
-        mobileExample.createCriteria().andMobileEqualTo(mobile);
-        List<Member> mobiles = mapper.selectByExample(mobileExample);
-        if (CollUtil.isNotEmpty(mobiles)) {
+        Member memberDb = selectByDb(mobile);
+        if (ObjectUtil.isNotNull(memberDb)) {
             throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_EXIST);
         }
         Member member = new Member();
@@ -48,10 +48,8 @@ public class MemberService {
 
     public void sendCode(MemberSendCodeReq req) {
         String mobile = req.getMobile();
-        MemberExample mobileExample = new MemberExample();
-        mobileExample.createCriteria().andMobileEqualTo(mobile);
-        List<Member> mobiles = mapper.selectByExample(mobileExample);
-        if (CollUtil.isEmpty(mobiles)) {
+        Member memberDb = selectByDb(mobile);
+        if (ObjectUtil.isNull(memberDb)) {
             LOG.info("手机号不存在，插入一条记录");
             Member member = new Member();
             member.setId(SnowUtil.getSnowflakeNextId());
@@ -70,5 +68,25 @@ public class MemberService {
 
         // 对接短信通道，发送短信
         LOG.info("对接短信通道");
+    }
+
+    public MemberLoginResp login(MemberLoginReq req) {
+        String reqMobile = req.getMobile();
+        String reqCode = req.getCode();
+        Member memberDb = selectByDb(reqMobile);
+        if (ObjectUtil.isNull(memberDb)) {
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_NOT_EXIST);
+        }
+        if (!"8888".equals(reqCode)) {
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_CODE_ERROR);
+        }
+        return BeanUtil.copyProperties(memberDb, MemberLoginResp.class);
+    }
+
+    private Member selectByDb(String reqMobile) {
+        MemberExample mobileExample = new MemberExample();
+        mobileExample.createCriteria().andMobileEqualTo(reqMobile);
+        List<Member> mobiles = mapper.selectByExample(mobileExample);
+        return mobiles.get(0);
     }
 }
