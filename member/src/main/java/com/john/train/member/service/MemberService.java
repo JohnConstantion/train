@@ -1,6 +1,7 @@
 package com.john.train.member.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.john.train.common.exception.BusinessException;
 import com.john.train.common.exception.BusinessExceptionEnum;
@@ -87,6 +88,9 @@ public class MemberService {
         MemberExample mobileExample = new MemberExample();
         mobileExample.createCriteria().andMobileEqualTo(reqMobile);
         List<Member> mobiles = mapper.selectByExample(mobileExample);
+        if (CollUtil.isEmpty(mobiles)) {
+            return null;
+        }
         return mobiles.get(0);
     }
 }
