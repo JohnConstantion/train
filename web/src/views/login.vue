@@ -1,26 +1,28 @@
 <template>
     <a-row class="login">
         <a-col :span="8" :offset="8" class="login-main">
-            <h1 style="text-align: center"><rocket-two-tone />&nbsp;甲蛙12306售票系统</h1>
+            <h1 style="text-align: center">
+                <rocket-two-tone/>&nbsp;甲蛙12306售票系统
+            </h1>
             <a-form
-                :model="loginForm"
-                name="basic"
-                autocomplete="off"
-                @finish="onFinish"
-                @finishFailed="onFinishFailed"
+                    :model="loginForm"
+                    name="basic"
+                    autocomplete="off"
+                    @finish="onFinish"
+                    @finishFailed="onFinishFailed"
             >
                 <a-form-item
-                    label=""
-                    name="mobile"
-                    :rules="[{ required: true, message: '请输入手机号!' }]"
+                        label=""
+                        name="mobile"
+                        :rules="[{ required: true, message: '请输入手机号!' }]"
                 >
                     <a-input v-model:value="loginForm.mobile" placeholder="手机号"/>
                 </a-form-item>
 
                 <a-form-item
-                    label=""
-                    name="code"
-                    :rules="[{ required: true, message: '请输入验证码!' }]"
+                        label=""
+                        name="code"
+                        :rules="[{ required: true, message: '请输入验证码!' }]"
                 >
                     <a-input v-model:value="loginForm.code">
                         <template #addonAfter>
@@ -40,7 +42,9 @@
 </template>
 
 <script>
-import { defineComponent, reactive } from 'vue';
+import {defineComponent, reactive} from 'vue';
+import axios from 'axios';
+
 export default defineComponent({
     name: "login-view",
     setup() {
@@ -54,10 +58,20 @@ export default defineComponent({
         const onFinishFailed = errorInfo => {
             console.log('Failed:', errorInfo);
         };
+
+        const sendCode = () => {
+            axios.post("http://localhost:8088/member/member/sendCode", {
+                "mobile": loginForm.mobile
+            }).then(response => {
+                console.log(response);
+            })
+        };
+
         return {
             loginForm,
             onFinish,
             onFinishFailed,
+            sendCode
         };
     },
 });
@@ -68,6 +82,7 @@ export default defineComponent({
     font-size: 25px;
     font-weight: bold;
 }
+
 .login-main {
     margin-top: 100px;
     padding: 30px 30px 20px;
