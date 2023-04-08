@@ -2,9 +2,10 @@ package com.john.train.member.controller;
 
 import com.john.train.common.resp.CommonResp;
 import com.john.train.member.req.MemberRegisterReq;
+import com.john.train.member.req.MemberSendCodeReq;
 import com.john.train.member.service.MemberService;
+import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/member")
 public class MemberController {
-    @Autowired
+    @Resource
     private MemberService memberService;
 
     @GetMapping("/count")
@@ -31,5 +32,11 @@ public class MemberController {
     public CommonResp<Long> register(@Valid MemberRegisterReq req) {
         long register = memberService.register(req);
         return new CommonResp<>(register);
+    }
+
+    @PostMapping("/sendCode")
+    public CommonResp<Long> sendCode(@Valid MemberSendCodeReq req) {
+        memberService.sendCode(req);
+        return new CommonResp<>();
     }
 }
