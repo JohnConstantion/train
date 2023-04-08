@@ -60,7 +60,7 @@ export default defineComponent({
         };
 
         const sendCode = () => {
-            axios.post("http://localhost:8088/member/member/sendCode", {
+            axios.post("http://localhost:8000/member/member/sendCode", {
                 "mobile": loginForm.mobile
             }).then(response => {
                 console.log(response);
