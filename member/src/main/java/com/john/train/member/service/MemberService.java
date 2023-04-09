@@ -6,6 +6,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.jwt.JWTUtil;
 import com.john.train.common.exception.BusinessException;
 import com.john.train.common.exception.BusinessExceptionEnum;
+import com.john.train.common.util.JwtUtil;
 import com.john.train.common.util.SnowUtil;
 import com.john.train.member.domain.Member;
 import com.john.train.member.domain.MemberExample;
@@ -84,9 +85,7 @@ public class MemberService {
         }
 
         MemberLoginResp memberLoginResp = BeanUtil.copyProperties(memberDb, MemberLoginResp.class);
-        String key = "John12306";
-        String token = JWTUtil.createToken(BeanUtil.beanToMap(memberLoginResp), key.getBytes());
-        JWTUtil.createToken(BeanUtil.beanToMap(memberLoginResp), key.getBytes());
+        String token = JwtUtil.createToken(memberLoginResp.getId(), memberLoginResp.getMobile());
         memberLoginResp.setToken(token);
         return memberLoginResp;
     }
