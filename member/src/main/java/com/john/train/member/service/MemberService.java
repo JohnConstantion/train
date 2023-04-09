@@ -3,6 +3,7 @@ package com.john.train.member.service;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.jwt.JWTUtil;
 import com.john.train.common.exception.BusinessException;
 import com.john.train.common.exception.BusinessExceptionEnum;
 import com.john.train.common.util.SnowUtil;
@@ -81,7 +82,13 @@ public class MemberService {
         if (!"8888".equals(reqCode)) {
             throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_CODE_ERROR);
         }
-        return BeanUtil.copyProperties(memberDb, MemberLoginResp.class);
+
+        MemberLoginResp memberLoginResp = BeanUtil.copyProperties(memberDb, MemberLoginResp.class);
+        String key = "John12306";
+        String token = JWTUtil.createToken(BeanUtil.beanToMap(memberLoginResp), key.getBytes());
+        JWTUtil.createToken(BeanUtil.beanToMap(memberLoginResp), key.getBytes());
+        memberLoginResp.setToken(token);
+        return memberLoginResp;
     }
 
     private Member selectByDb(String reqMobile) {
