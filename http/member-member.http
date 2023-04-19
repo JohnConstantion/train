@@ -31,3 +31,15 @@ Content-Type: application/json
 }
 
 ###
+
+POST http://localhost:8000/member/passenger/save
+Content-Type: application/json
+
+{
+  "memberId": "1",
+  "name": "test",
+  "idCard": "123321",
+  "type": "1"
+}
+
+###
