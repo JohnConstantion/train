@@ -4,6 +4,7 @@ Accept: application/json
 {
 "token": "123"
 }
+
 ###
 POST http://localhost:8000/member/member/register
 Content-Type: application/json
@@ -30,16 +31,11 @@ Content-Type: application/json
   "code": "8888"
 }
 
-###
+> {%
+    client.log(JSON.stringify(response.body));
+    client.log(JSON.stringify(response.body.content.token));
+    client.global.set("token", response.body.content.token);
+%}
 
-POST http://localhost:8000/member/passenger/save
-Content-Type: application/json
-
-{
-  "memberId": "1",
-  "name": "test",
-  "idCard": "123321",
-  "type": "1"
-}
 
 ###
