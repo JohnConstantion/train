@@ -1,6 +1,7 @@
 package com.john.train.member.controller;
 
 import com.john.train.common.resp.CommonResp;
+import com.john.train.common.resp.PageResp;
 import com.john.train.member.req.PassengerQueryReq;
 import com.john.train.member.req.PassengerSaveReq;
 import com.john.train.member.resp.PassengerQueryResp;
@@ -27,8 +28,8 @@ public class PassengerController {
     }
 
     @GetMapping("/query-list")
-    public CommonResp<List<PassengerQueryResp>> queryResps(@Valid PassengerQueryReq req) {
-        List<PassengerQueryResp> list = passengerService.queryResp(req);
+    public CommonResp<PageResp<PassengerQueryResp>> queryResps(@Valid PassengerQueryReq req) {
+        PageResp<PassengerQueryResp> list = passengerService.queryResp(req);
         return new CommonResp<>(list);
     }
 
