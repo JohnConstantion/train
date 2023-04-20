@@ -52,7 +52,7 @@ export default defineComponent({
         const pagination = reactive({
             total: 0,
             current: 1,
-            pageSize: 2,
+            pageSize: 4,
         });
         let loading = ref(false);
         const columns = [{
@@ -79,6 +79,10 @@ export default defineComponent({
                 if (data.success) {
                     notification.success({description: "保存成功！"});
                     visible.value = false;
+                    handleQuery({
+                        page: pagination.current,
+                        size: pagination.pageSize
+                    });
                 } else {
                     notification.error({description: data.message});
                 }
