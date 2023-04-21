@@ -14,13 +14,20 @@
             <template v-if="column.dataIndex === 'operation'">
                 <a-space>
                     <a-popconfirm
-                        title="删除后不可恢复，确认删除?"
-                        @confirm="onDelete(record)"
-                        ok-text="确认" cancel-text="取消">
+                            title="删除后不可恢复，确认删除?"
+                            @confirm="onDelete(record)"
+                            ok-text="确认" cancel-text="取消">
                         <a style="color: red">删除</a>
                     </a-popconfirm>
                     <a @click="onEdit(record)">编辑</a>
                 </a-space>
+            </template>
+            <template v-else-if="column.dataIndex === 'type'">
+                <span v-for="item in PASSENGER_TYPE_ARRAY" :key="item.key">
+                     <span v-if="item.key === record.type">
+                         {{ item.value }}
+                     </span>
+                </span>
             </template>
         </template>
     </a-table>
@@ -35,7 +42,9 @@
             </a-form-item>
             <a-form-item label="类型">
                 <a-select v-model:value="passenger.type">
-                    <a-select-option v-for="item in PASSENGER_TYPE_ARRAY" :key="item.key" :value="item.key">{{item.value}}</a-select-option>
+                    <a-select-option v-for="item in PASSENGER_TYPE_ARRAY" :key="item.key" :value="item.key">
+                        {{ item.value }}
+                    </a-select-option>
                 </a-select>
             </a-form-item>
         </a-form>
@@ -50,7 +59,7 @@ export default defineComponent({
     setup() {
         const visible = ref(false);
 
-        const PASSENGER_TYPE_ARRAY = [{key: "1", value: "成人1"}, {key: "2", value: "儿童"}, {key: "3", value: "学生"}];
+        const PASSENGER_TYPE_ARRAY = [{key: "1", value: "成人"}, {key: "2", value: "儿童"}, {key: "3", value: "学生"}];
 
         let passenger = ref({
             id: undefined,
