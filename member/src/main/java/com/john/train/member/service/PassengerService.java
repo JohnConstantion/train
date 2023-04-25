@@ -50,9 +50,7 @@ public class PassengerService {
         PassengerExample example = new PassengerExample();
         example.setOrderByClause("id desc");
         PassengerExample.Criteria criteria = example.createCriteria();
-        if (ObjectUtil.isNotNull(req.getMemberId())) {
-            criteria.andMemberIdEqualTo(req.getMemberId());
-        }
+
         LOG.info("查询页码：{}", req.getPage());
         LOG.info("每页条数：{}", req.getSize());
         PageHelper.startPage(req.getPage(), req.getSize());
