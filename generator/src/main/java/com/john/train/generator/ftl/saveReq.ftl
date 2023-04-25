@@ -1,4 +1,4 @@
-package com.john.train.member.req;
+package com.john.train.${module}.req;
 
 <#list typeSet as type>
 <#if type=='Date'>

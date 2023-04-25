@@ -1,23 +1,20 @@
-package com.john.train.member.controller;
+package com.john.train.${module}.controller;
 
+import com.john.train.common.context.LoginMemberContext;
 import com.john.train.common.resp.CommonResp;
 import com.john.train.common.resp.PageResp;
-import com.john.train.member.req.${Domain}QueryReq;
-import com.john.train.member.req.${Domain}SaveReq;
-import com.john.train.member.resp.${Domain}QueryResp;
-import com.john.train.member.service.${Domain}Service;
+import com.john.train.${module}.req.${Domain}QueryReq;
+import com.john.train.${module}.req.${Domain}SaveReq;
+import com.john.train.${module}.resp.${Domain}QueryResp;
+import com.john.train.${module}.service.${Domain}Service;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-/**
- * @author johnconstantine
- */
 @RestController
 @RequestMapping("/${do_main}")
 public class ${Domain}Controller {
+
     @Resource
     private ${Domain}Service ${domain}Service;
 
@@ -28,8 +25,9 @@ public class ${Domain}Controller {
     }
 
     @GetMapping("/query-list")
-    public CommonResp<PageResp<${Domain}QueryResp>> queryResps(@Valid ${Domain}QueryReq req) {
-        PageResp<${Domain}QueryResp> list = ${domain}Service.queryResp(req);
+    public CommonResp<PageResp<${Domain}QueryResp>> queryList(@Valid ${Domain}QueryReq req) {
+        req.setMemberId(LoginMemberContext.getId());
+        PageResp<${Domain}QueryResp> list = ${domain}Service.queryList(req);
         return new CommonResp<>(list);
     }
 
@@ -38,4 +36,5 @@ public class ${Domain}Controller {
         ${domain}Service.delete(id);
         return new CommonResp<>();
     }
+
 }
