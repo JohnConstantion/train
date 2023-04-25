@@ -35,7 +35,6 @@ public class ${Domain}Service {
         DateTime now = DateTime.now();
         ${Domain} ${domain} = BeanUtil.copyProperties(req, ${Domain}.class);
         if (ObjectUtil.isNull(${domain}.getMemberId())) {
-            ${domain}.setMemberId(LoginMemberContext.getId());
             ${domain}.setId(SnowUtil.getSnowflakeNextId());
             ${domain}.setCreateTime(now);
             ${domain}.setUpdateTime(now);
@@ -50,9 +49,7 @@ public class ${Domain}Service {
         ${Domain}Example example = new ${Domain}Example();
         example.setOrderByClause("id desc");
         ${Domain}Example.Criteria criteria = example.createCriteria();
-        if (ObjectUtil.isNotNull(req.getMemberId())) {
-            criteria.andMemberIdEqualTo(req.getMemberId());
-        }
+
         LOG.info("查询页码：{}", req.getPage());
         LOG.info("每页条数：{}", req.getSize());
         PageHelper.startPage(req.getPage(), req.getSize());
