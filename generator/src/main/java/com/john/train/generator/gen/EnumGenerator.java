@@ -1,7 +1,6 @@
 package com.john.train.generator.gen;
 
 import cn.hutool.core.util.StrUtil;
-import com.john.train.member.enums.PassengerTypeEnum;
 
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
@@ -14,19 +13,19 @@ public class EnumGenerator {
     static String path = "web/src/assets/js/enums.js";
 
     public static void main(String[] args) {
-        StringBuffer bufferObject = new StringBuffer();
-        StringBuffer bufferArray = new StringBuffer();
-        long begin = System.currentTimeMillis();
-        try {
-            toJson(PassengerTypeEnum.class, bufferObject, bufferArray);
-
-            StringBuffer buffer = bufferObject.append("\r\n").append(bufferArray);
-            writeJs(buffer);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        long end = System.currentTimeMillis();
-        System.out.println("执行耗时:" + (end - begin) + " 毫秒");
+//        StringBuffer bufferObject = new StringBuffer();
+//        StringBuffer bufferArray = new StringBuffer();
+//        long begin = System.currentTimeMillis();
+//        try {
+//            toJson(PassengerTypeEnum.class, bufferObject, bufferArray);
+//
+//            StringBuffer buffer = bufferObject.append("\r\n").append(bufferArray);
+//            writeJs(buffer);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        long end = System.currentTimeMillis();
+//        System.out.println("执行耗时:" + (end - begin) + " 毫秒");
     }
 
     private static void toJson(Class clazz, StringBuffer bufferObject, StringBuffer bufferArray) throws Exception {
