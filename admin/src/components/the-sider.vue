@@ -31,6 +31,11 @@
                     <user-outlined/> &nbsp; 火车车站
                 </router-link>
             </a-menu-item>
+            <a-menu-item key="/train_carriage">
+                <router-link to="/train_carriage">
+                    <user-outlined/> &nbsp; 火车车厢
+                </router-link>
+            </a-menu-item>
         </a-menu>
     </a-layout-sider>
 </template>
