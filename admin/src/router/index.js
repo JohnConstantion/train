@@ -17,14 +17,16 @@ const routes = [
         }, {
             path: 'train',
             component: () => import('../views/main/train.vue')
-        },{
+        }, {
             path: 'train_station',
             component: () => import('../views/main/train-station.vue')
-        }
-            ,{
+        }, {
                 path: 'train_carriage',
                 component: () => import('../views/main/train-carriage.vue')
-            }]
+        }, {
+                path: 'train_seat',
+                component: () => import('../views/main/train-seat.vue')
+        }]
     }, {
         path: '',
         redirect: '/welcome'
@@ -35,7 +37,6 @@ const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
 })
-
 
 
 export default router
