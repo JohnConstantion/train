@@ -34,7 +34,7 @@ public class StationService {
     public void save(StationSaveReq req) {
         DateTime now = DateTime.now();
         Station station = BeanUtil.copyProperties(req, Station.class);
-        if (ObjectUtil.isNull(station.getMemberId())) {
+        if (ObjectUtil.isNull(station.getId())) {
             station.setId(SnowUtil.getSnowflakeNextId());
             station.setCreateTime(now);
             station.setUpdateTime(now);

@@ -34,7 +34,7 @@ public class ${Domain}Service {
     public void save(${Domain}SaveReq req) {
         DateTime now = DateTime.now();
         ${Domain} ${domain} = BeanUtil.copyProperties(req, ${Domain}.class);
-        if (ObjectUtil.isNull(${domain}.getMemberId())) {
+        if (ObjectUtil.isNull(${domain}.getId())) {
             ${domain}.setId(SnowUtil.getSnowflakeNextId());
             ${domain}.setCreateTime(now);
             ${domain}.setUpdateTime(now);
