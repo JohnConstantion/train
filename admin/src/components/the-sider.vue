@@ -23,7 +23,12 @@
             </a-menu-item>
             <a-menu-item key="/train">
                 <router-link to="/train">
-                    <user-outlined/> &nbsp; 车量管理
+                    <user-outlined/> &nbsp; 火车管理
+                </router-link>
+            </a-menu-item>
+            <a-menu-item key="/train_station">
+                <router-link to="/train_station">
+                    <user-outlined/> &nbsp; 火车车站
                 </router-link>
             </a-menu-item>
         </a-menu>
