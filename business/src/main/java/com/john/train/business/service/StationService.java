@@ -45,7 +45,7 @@ public class StationService {
         }
     }
 
-    public PageResp<StationQueryResp> queryResp(StationQueryReq req) {
+    public PageResp<StationQueryResp> queryList(StationQueryReq req) {
         StationExample example = new StationExample();
         example.setOrderByClause("id desc");
         StationExample.Criteria criteria = example.createCriteria();

@@ -45,7 +45,7 @@ public class ${Domain}Service {
         }
     }
 
-    public PageResp<${Domain}QueryResp> queryResp(${Domain}QueryReq req) {
+    public PageResp<${Domain}QueryResp> queryList(${Domain}QueryReq req) {
         ${Domain}Example example = new ${Domain}Example();
         example.setOrderByClause("id desc");
         ${Domain}Example.Criteria criteria = example.createCriteria();
