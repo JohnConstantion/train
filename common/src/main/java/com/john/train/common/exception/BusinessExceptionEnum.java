@@ -16,7 +16,12 @@ public enum BusinessExceptionEnum {
     /**
      * 短信验证码错误
      */
-    MEMBER_MOBILE_CODE_ERROR("短信验证码错误");
+    MEMBER_MOBILE_CODE_ERROR("短信验证码错误"),
+
+    /**
+     * 车站已存在
+     */
+    BUSINESS_STATION_NAME_UNIQUE_ERROR("车站已存在");
     private String desc;
 
     BusinessExceptionEnum(String desc) {
