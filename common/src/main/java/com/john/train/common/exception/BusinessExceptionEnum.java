@@ -21,7 +21,11 @@ public enum BusinessExceptionEnum {
     /**
      * 车站已存在
      */
-    BUSINESS_STATION_NAME_UNIQUE_ERROR("车站已存在");
+    BUSINESS_STATION_NAME_UNIQUE_ERROR("车站已存在"),
+    BUSINESS_TRAIN_CODE_UNIQUE_ERROR("车次编号已存在"),
+    BUSINESS_TRAIN_STATION_INDEX_UNIQUE_ERROR("同车次站序已存在"),
+    BUSINESS_TRAIN_STATION_NAME_UNIQUE_ERROR("同车次站名已存在"),
+    BUSINESS_TRAIN_CARRIAGE_INDEX_UNIQUE_ERROR("同车次厢号已存在");;
     private String desc;
 
     BusinessExceptionEnum(String desc) {
