@@ -5,15 +5,14 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.john.train.common.context.LoginMemberContext;
-import com.john.train.common.resp.PageResp;
-import com.john.train.common.util.SnowUtil;
 import com.john.train.business.domain.Train;
 import com.john.train.business.domain.TrainExample;
 import com.john.train.business.mapper.TrainMapper;
 import com.john.train.business.req.TrainQueryReq;
 import com.john.train.business.req.TrainSaveReq;
 import com.john.train.business.resp.TrainQueryResp;
+import com.john.train.common.resp.PageResp;
+import com.john.train.common.util.SnowUtil;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,4 +69,12 @@ public class TrainService {
     public void delete(Long id) {
         trainMapper.deleteByPrimaryKey(id);
     }
+
+    public List<TrainQueryResp> queryAll() {
+        TrainExample example = new TrainExample();
+        example.setOrderByClause("code desc");
+        List<Train> trainList = trainMapper.selectByExample(example);
+        return BeanUtil.copyToList(trainList, TrainQueryResp.class);
+    }
+
 }
