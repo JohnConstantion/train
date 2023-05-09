@@ -21,11 +21,15 @@ const routes = [
             path: 'train_station',
             component: () => import('../views/main/train-station.vue')
         }, {
-                path: 'train_carriage',
-                component: () => import('../views/main/train-carriage.vue')
+            path: 'train_carriage',
+            component: () => import('../views/main/train-carriage.vue')
         }, {
-                path: 'train_seat',
-                component: () => import('../views/main/train-seat.vue')
+            path: 'train_seat',
+            component: () => import('../views/main/train-seat.vue')
+        }, {
+            path: 'batch/job',
+            name: 'batch/job',
+            component: () => import('../views/main/job.vue')
         }]
     }, {
         path: '',
