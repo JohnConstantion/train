@@ -17,7 +17,7 @@ public class DailyTrainCarriage {
 
     private Integer rowCount;
 
-    private Integer columnCount;
+    private Integer colCount;
 
     private Date createTime;
 
@@ -79,12 +79,12 @@ public class DailyTrainCarriage {
         this.rowCount = rowCount;
     }
 
-    public Integer getColumnCount() {
-        return columnCount;
+    public Integer getColCount() {
+        return colCount;
     }
 
-    public void setColumnCount(Integer columnCount) {
-        this.columnCount = columnCount;
+    public void setColCount(Integer colCount) {
+        this.colCount = colCount;
     }
 
     public Date getCreateTime() {
@@ -116,7 +116,7 @@ public class DailyTrainCarriage {
         sb.append(", seatType=").append(seatType);
         sb.append(", seatCount=").append(seatCount);
         sb.append(", rowCount=").append(rowCount);
-        sb.append(", columnCount=").append(columnCount);
+        sb.append(", colCount=").append(colCount);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");

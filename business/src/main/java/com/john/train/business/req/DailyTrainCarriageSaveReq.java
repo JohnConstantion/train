@@ -1,6 +1,7 @@
 package com.john.train.business.req;
 
 import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +17,7 @@ public class DailyTrainCarriageSaveReq {
     /**
      * 日期
      */
-            @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @NotNull(message = "【日期】不能为空")
     private Date date;
 
@@ -41,7 +42,6 @@ public class DailyTrainCarriageSaveReq {
     /**
      * 座位数
      */
-    @NotNull(message = "【座位数】不能为空")
     private Integer seatCount;
 
     /**
@@ -53,19 +53,18 @@ public class DailyTrainCarriageSaveReq {
     /**
      * 列数
      */
-    @NotNull(message = "【列数】不能为空")
-    private Integer columnCount;
+    private Integer colCount;
 
     /**
      * 新增时间
      */
-            @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
     /**
      * 修改时间
      */
-            @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
 
     public Long getId() {
@@ -124,12 +123,12 @@ public class DailyTrainCarriageSaveReq {
         this.rowCount = rowCount;
     }
 
-    public Integer getColumnCount() {
-        return columnCount;
+    public Integer getColCount() {
+        return colCount;
     }
 
-    public void setColumnCount(Integer columnCount) {
-        this.columnCount = columnCount;
+    public void setColCount(Integer colCount) {
+        this.colCount = colCount;
     }
 
     public Date getCreateTime() {
@@ -161,7 +160,7 @@ public class DailyTrainCarriageSaveReq {
         sb.append(", seatType=").append(seatType);
         sb.append(", seatCount=").append(seatCount);
         sb.append(", rowCount=").append(rowCount);
-        sb.append(", columnCount=").append(columnCount);
+        sb.append(", colCount=").append(colCount);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");

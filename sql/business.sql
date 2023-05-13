@@ -120,7 +120,7 @@ create table `daily_train_carriage` (
                                         `seat_type` char(1) not null comment '座位类型|枚举[SeatTypeEnum]',
                                         `seat_count` int not null comment '座位数',
                                         `row_count` int not null comment '排数',
-                                        `column_count` int not null comment '列数',
+                                        `col_count` int not null comment '列数',
                                         `create_time` datetime(3) comment '新增时间',
                                         `update_time` datetime(3) comment '修改时间',
                                         primary key (`id`),
