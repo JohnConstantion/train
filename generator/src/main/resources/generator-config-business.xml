@@ -42,7 +42,7 @@
                              type="XMLMAPPER"/>
 
 <!--        <table tableName="station" domainObjectName="Station"/>-->
-        <table tableName="daily_train_station" domainObjectName="DailyTrainStation"/>
+        <table tableName="daily_train_carriage" domainObjectName="DailyTrainCarriage"/>
         <!--        <table tableName="passenger" domainObjectName="Passenger"/>-->
     </context>
 </generatorConfiguration>
